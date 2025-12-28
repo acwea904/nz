@@ -12,7 +12,7 @@ DASHBOARD_VERSION=${DASHBOARD_VERSION:-latest}
 
 GITHUB_REPO_OWNER=${GITHUB_REPO_OWNER:-"acwea904"}
 GITHUB_REPO_NAME=${GITHUB_REPO_NAME:-"nzbak"}
-GITHUB_TOKEN=${GITHUB_TOKEN:-"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"}
+GITHUB_TOKEN=${GITHUB_TOKEN:-"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"}
 GITHUB_BRANCH=${GITHUB_BRANCH:-main}
 ZIP_PASSWORD=${ZIP_PASSWORD:-"#Xe-as/:Ht8H(!"}
 
@@ -296,7 +296,7 @@ if [ -n "$GITHUB_TOKEN" ] && [ -n "$GITHUB_REPO_OWNER" ] && [ -n "$GITHUB_REPO_N
             fi
             
             # 每小时检查一次
-            sleep 60
+            sleep 36
         done
     ) &
     
