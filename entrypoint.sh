@@ -296,7 +296,7 @@ if [ -n "$GITHUB_TOKEN" ] && [ -n "$GITHUB_REPO_OWNER" ] && [ -n "$GITHUB_REPO_N
             fi
             
             # 每小时检查一次
-            sleep 3600
+            sleep 60
         done
     ) &
     
