@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 # =========================
@@ -17,6 +16,8 @@ GITHUB_TOKEN=${GITHUB_TOKEN:-""}
 GITHUB_BRANCH=${GITHUB_BRANCH:-main}
 ZIP_PASSWORD=${ZIP_PASSWORD:-""}
 
+PROJECT_URL=${PROJECT_URL:-""}
+
 # =========================
 # 日志函数
 # =========================
@@ -34,6 +35,24 @@ log_warn() {
 
 log_error() {
     echo "[ERROR] $(date '+%Y-%m-%d %H:%M:%S') $1"
+}
+
+# =========================
+# 保活函数
+# =========================
+add_visit_task() {
+    if [ -z "$PROJECT_URL" ]; then
+        log_info "跳过自动保活任务"
+        return 0
+    fi
+    
+    if curl -s -X POST "https://trans.ct8.pl/add-url" \
+        -H "Content-Type: application/json" \
+        -d "{\"url\":\"$PROJECT_URL\"}" >/dev/null; then
+        log_ok "自动保活任务添加成功"
+    else
+        log_error "添加自动保活任务失败"
+    fi
 }
 
 # =========================
@@ -342,6 +361,15 @@ if [ -n "$GITHUB_TOKEN" ] && [ -n "$GITHUB_REPO_OWNER" ] && [ -n "$GITHUB_REPO_N
 else
     log_warn "GITHUB_TOKEN & GITHUB_REPO_NAME & GITHUB_REPO_OWNER 未设置，跳过备份"
 fi
+
+# =========================
+# 步骤 10: 添加保活任务
+# =========================
+echo "=========================================="
+echo " 步骤 10: 添加保活任务"
+echo "=========================================="
+
+add_visit_task
 
 # =========================
 # 启动完成
