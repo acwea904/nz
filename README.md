@@ -21,6 +21,7 @@
 | `NZ_CLIENT_SECRET`  | `kDerKiyNp*************mvj0XMy` | ❌  | `自动生成` 备份文件中 `.yaml` 文件里的 `agentsecretkey` 参数                                           |
 | `NZ_TLS`            | `true`                          | ❌  | 是否启用 TLS，默认 `true`                                                               |
 | `DASHBOARD_VERSION` | `v1.14.1`                       | ❌  | 指定部署的探针版本，默认 `latest`                                                            |
+| `PROJECT_URL` | `https://xxx.hf.space`                       | ❌  | 设置即启用保活，不设置则跳过                                                            |
 
 ---
 
@@ -140,7 +141,7 @@ FROM ghcr.io/oyz8/nz:latest
 
 1. 进入 **Logs** 查看部署进度
 2. 部署成功后，使用 **Cloudflare 域名**（`ARGO_DOMAIN`）访问面板
-3. 抱脸空间需要保活的，自行解决
+3. 抱脸空间需要保活的，自行解决 或 设置 `PROJECT_URL` 变量
 
 ---
 
